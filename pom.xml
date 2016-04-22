@@ -19,7 +19,9 @@
     <dubbo.version>2.5.3</dubbo.version>
     <spring.version>4.1.6.RELEASE</spring.version>
     <spring-remoting.version>2.0.8</spring-remoting.version>
-    <jedis.version>2.0.0</jedis.version>
+    <zookeeper.version>3.3.3</zookeeper.version>
+    <zkclient.version>0.1</zkclient.version>
+    <curator.version>1.1.10</curator.version>
 
 
 
@@ -81,12 +83,32 @@
         </exclusions>
       </dependency>
 
+      <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>${zookeeper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.github.sgroschupf</groupId>
+        <artifactId>zkclient</artifactId>
+        <version>${zkclient.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>log4j</artifactId>
+            <groupId>log4j</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
 
       <dependency>
-        <groupId>redis.clients</groupId>
-        <artifactId>jedis</artifactId>
-        <version>${jedis.version}</version>
+        <groupId>com.netflix.curator</groupId>
+        <artifactId>curator-framework</artifactId>
+        <version>${curator.version}</version>
       </dependency>
+
+
+
 
       <!-- log -->
       <dependency>
@@ -173,9 +195,16 @@
     </dependency>
 
     <dependency>
-      <groupId>redis.clients</groupId>
-      <artifactId>jedis</artifactId>
+      <groupId>com.github.sgroschupf</groupId>
+      <artifactId>zkclient</artifactId>
+
     </dependency>
+
+    <dependency>
+      <groupId>com.netflix.curator</groupId>
+      <artifactId>curator-framework</artifactId>
+    </dependency>
+
 
 
 

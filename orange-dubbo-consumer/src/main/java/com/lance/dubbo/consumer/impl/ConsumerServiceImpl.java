@@ -12,15 +12,17 @@ import com.lance.dubbo.provider.model.ProviderResponse;
  */
 public class ConsumerServiceImpl implements ConsumerService {
     private ProviderService providerService;
-    public ConsumerResponse consume(ConsumerRequest consumerRequest) {
+    public ConsumerResponse consume(ConsumerRequest consumerRequest) throws InterruptedException {
         ProviderRequest providerRequest = new ProviderRequest();
         System.out.println("ready dubbo invoke");
         providerRequest.setName(consumerRequest.getName());
         providerRequest.setAge(consumerRequest.getAge());
         ProviderResponse response = providerService.provider(providerRequest);
         ConsumerResponse consumerResponse = new ConsumerResponse();
-        consumerResponse.setAge(response.getAge());
-        consumerResponse.setName(response.getName());
+        if (response!=null) {
+            consumerResponse.setAge(response.getAge());
+            consumerResponse.setName(response.getName());
+        }
         return consumerResponse;
     }
 

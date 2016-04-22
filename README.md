@@ -31,6 +31,26 @@
                     1.2.3.1.1   使用jedis的版本不要太高因为高版本引用commons-pool2 dubbo使用commons-pool 推荐2.0.0
                     1.2.3.1.2   使用redis作为注册中心要注意日志打印，一旦失去连接会打印大量日志
 2.  集群容错
+    2.1 Failover Cluster    failover（默认）    失败自动切换，当出现失败，重试其它服务器
+        2.1.1   应用场景：通常用于读操作，但重试会带来更长延迟
+        2.1.2   使用方式：可通过retries="2"来设置重试次数(不含第一次)
+        2.1.3   场景复现：provider模拟超时时间，接口调用时记录调用次数
+    2.2 Failfast Cluster    failfast    快速失败，只发起一次调用，失败立即报错
+        2.2.1   应用场景：通常用于非幂等性的写操作，比如新增记录
+    2.3 Failsafe Cluster    failsafe    失败安全，出现异常时，直接忽略
+        2.3.1   应用场景：   通常用于写入审计日志等操作
+    2.4 Failback Cluster    failback    失败自动恢复，后台记录失败请求，定时重发
+        2.4.1   应用场景：   通常用于消息通知操作
+    2.5 Forking Cluster     forking     并行调用多个服务器，只要一个成功即返回
+        2.5.1   应用场景：   通常用于实时性要求较高的读操作，但需要浪费更多服务资源
+        2.5.2   使用方式：   可通过forks="2"来设置最大并行数
+    2.6 Broadcast Cluster   broadcast   广播调用所有提供者，逐个调用，任意一台报错则报错
+        2.6.1   应用场景：   通常用于通知所有提供者更新缓存或日志等本地资源信息
+    2.7 注意事项
+        2.7.1   配置的优先顺序 (作用于 timeout retries, loadbalance, actives)
+                reference method --> service method --> reference --> service --> consumer --> provider
+        2.7.2   原则上超时时间应该在服务放配置，因为一个方法需要执行多长时间，服务提供方更清楚，
+                如果一个消费方同时引用多个服务，就不需要关心每个服务的超时设置
 3.  负载均衡
 4.  线程模型
 5.  直连提供者

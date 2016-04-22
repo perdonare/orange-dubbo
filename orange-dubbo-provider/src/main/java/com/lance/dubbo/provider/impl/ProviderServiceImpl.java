@@ -8,13 +8,16 @@ import com.lance.dubbo.provider.model.ProviderResponse;
  * Created by perdonare on 2016/4/22.
  */
 public class ProviderServiceImpl implements ProviderService {
-
-    public ProviderResponse provider(ProviderRequest providerRequest) {
+    private static int count = 0;
+    public ProviderResponse provider(ProviderRequest providerRequest) throws InterruptedException {
         if (providerRequest!=null) {
             System.out.println(providerRequest);
             ProviderResponse response = new ProviderResponse();
             response.setName(providerRequest.getName());
             response.setAge(providerRequest.getAge());
+            count++;
+            System.out.println("第 "+count+" 次调用");
+            Thread.sleep(10000);
             return response;
         }
         System.out.println("========null=============");

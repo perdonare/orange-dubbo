@@ -10,7 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  *
  */
 public class App {
-    public static void main( String[] args ) {
+    public static void main( String[] args ) throws InterruptedException {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:app-config.xml");
         context.start();
         ConsumerService consumerService = context.getBean(ConsumerService.class);
@@ -19,5 +19,7 @@ public class App {
         consumerRequest.setName("lance");
         ConsumerResponse consumerResponse = consumerService.consume(consumerRequest);
         System.out.println(consumerResponse);
+
+        Thread.sleep(30000);
     }
 }
