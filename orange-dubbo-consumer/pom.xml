@@ -11,5 +11,11 @@
 
     <artifactId>orange-dubbo-consumer</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.lance.dubbo</groupId>
+            <artifactId>orange-dubbo-provider</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

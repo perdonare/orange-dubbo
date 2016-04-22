@@ -1,6 +1,12 @@
+#当前：
 1.  启动时检查
     1.1 直连时启动检查
-    1.2 zookeeper时启动检查
+        provider配置：registry address="N/A" consumer配置：url="dubbo://127.0.0.1:20880/xxxxService
+    1.2 注册中心选择
+        1.2.1   simple （不可用，无提供类）
+        1.2.2   multicast
+        1.2.3   zookeeper
+        1.2.4   redis
 2.  集群容错
 3.  负载均衡
 4.  线程模型

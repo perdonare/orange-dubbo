@@ -6,4 +6,11 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="test"/>
+    <dubbo:reference  id="provider" url="dubbo://127.0.0.1:20880/com.lance.dubbo.provider.ProviderService" interface="com.lance.dubbo.provider.ProviderService" />
+
+    <bean id="consumer" class="com.lance.dubbo.consumer.impl.ConsumerServiceImpl">
+        <property name="providerService" ref="provider"/>
+    </bean>
 </beans>

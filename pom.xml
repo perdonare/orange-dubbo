@@ -12,7 +12,7 @@
     <module>orange-dubbo-consumer</module>
     <module>orange-dubbo-provider</module>
   </modules>
-  <name>orange-dubbo Maven Webapp</name>
+  <name>orange-dubbo</name>
 
   <properties>
     <project.version>1.0-SNAPSHOT</project.version>

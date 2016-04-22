@@ -7,5 +7,12 @@
         http://code.alibabatech.com/schema/dubbo
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
+    <dubbo:application name="dubbo-provider" />
+    <dubbo:registry address="N/A" />
+
+    <!--无注册中心  直连 -->
+    <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+
+    <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 
 </beans>
