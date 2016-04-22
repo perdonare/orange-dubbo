@@ -8,7 +8,7 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="dubbo-provider" />
-    <dubbo:registry address="N/A" />
+    <dubbo:registry address="239.255.255.255:9090" protocol="multicast" />
 
     <!--无注册中心  直连 -->
     <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />

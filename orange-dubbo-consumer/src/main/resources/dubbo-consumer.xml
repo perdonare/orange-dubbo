@@ -8,7 +8,16 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="test"/>
+    <!--方式 1 -->
+    <!--<dubbo:registry protocol="multicast"  address="239.255.255.255:9090"/>-->
+    <!--<dubbo:reference  id="provider"  interface="com.lance.dubbo.provider.ProviderService" />-->
+
+    <!--方式 2 -->
+    <!-- 注意 端口为20880 而不是provider提供的9090-->
     <dubbo:reference  id="provider" url="dubbo://127.0.0.1:20880/com.lance.dubbo.provider.ProviderService" interface="com.lance.dubbo.provider.ProviderService" />
+
+    <!--方式 3  不可用-->
+    <!--<dubbo:reference  id="provider" url="multicast://239.255.255.255:9090/com.lance.dubbo.provider.ProviderService" interface="com.lance.dubbo.provider.ProviderService" />-->
 
     <bean id="consumer" class="com.lance.dubbo.consumer.impl.ConsumerServiceImpl">
         <property name="providerService" ref="provider"/>

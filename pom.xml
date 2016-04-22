@@ -16,8 +16,9 @@
 
   <properties>
     <project.version>1.0-SNAPSHOT</project.version>
-    <dubbo.version>2.4.1</dubbo.version>
+    <dubbo.version>2.5.3</dubbo.version>
     <spring.version>4.1.6.RELEASE</spring.version>
+    <spring-remoting.version>2.0.8</spring-remoting.version>
   </properties>
 
   <dependencyManagement>
@@ -63,7 +64,9 @@
           </exclusion>
         </exclusions>
       </dependency>
+
     </dependencies>
+
   </dependencyManagement>
 
   <dependencies>
@@ -84,12 +87,7 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context-support</artifactId>
     </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
+
   </dependencies>
 
 
