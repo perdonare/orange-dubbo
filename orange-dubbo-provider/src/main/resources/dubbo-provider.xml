@@ -8,10 +8,15 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="dubbo-provider" />
-    <dubbo:registry address="239.255.255.255:9090" protocol="multicast" />
+    <!--默认使用zkclient作为 -->
+    <!--<dubbo:registry address="localhost:2181" protocol="zookeeper" />-->
+    <!--使用curator作为客户端-->
+    <!--<dubbo:registry address="localhost:2181" protocol="zookeeper" client="curator" />-->
+    <!--自定义dubbo使用的命名空间-->
+    <!--<dubbo:registry address="localhost:2181" protocol="zookeeper" client="curator" group="lance"/>-->
 
-    <!--无注册中心  直连 -->
-    <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+    <dubbo:registry timeout="5000" address="localhost:2182,localhost:2183,localhost:2184" protocol="zookeeper" client="curator" group="lance"/>
+    <dubbo:service   interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
     <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 

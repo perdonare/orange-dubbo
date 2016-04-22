@@ -11,6 +11,21 @@
                 1.2.2.2 使用muiticast  address选址和提供者的ip一致 端口也和多播的端口一致
                 其他：如果一个机器上同时启了多个消费者进程，消费者需声明unicast=false，否则只会有一个消费者能收到消息
         1.2.3   zookeeper
+                1.2.3.1 注意事项：
+                    1.2.3.1.1   当设置<dubbo:registry check="false" />时，记录失败注册和订阅请求，后台定时重试。
+                    1.2.3.1.2   可通过<dubbo:registry username="admin" password="1234" />设置zookeeper登录信息。
+                    1.2.3.1.3   可通过<dubbo:registry group="lance" />设置zookeeper的根节点，不设置将使用dubbo作为根节点。
+                    1.2.3.1.4   支持*号通配符<dubbo:reference group="*" version="*" />，可订阅服务的所有分组和所有版本的提供者。
+                    1.2.3.1.5   必须使用zkclient无论是zkclient还是curator模式com.github.sgroschupf
+                    1.2.3.1.6   必须使用netflix的curator客户端而不能使用apache的，不必使用zookeeper客户端
+                    1.2.3.1.7   当使用zk作为注册中心，无法连接时会一直重试直到最大值
+
+                1.2.3.2 使用zkclient作为客户端
+                1.2.3.2 只用curator作为客户端
+                1.2.3.3 同一注册中心分为多组
+                        <dubbo:registry id="chinaRegistry" protocol="zookeeper" address="10.20.153.10:2181" group="china" />
+                        <dubbo:registry id="intlRegistry" protocol="zookeeper" address="10.20.153.10:2181" group="intl" />
+                1.2.3.4 zookeeper集群版的配置
         1.2.4   redis
 2.  集群容错
 3.  负载均衡
