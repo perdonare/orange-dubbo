@@ -27,6 +27,9 @@
                         <dubbo:registry id="intlRegistry" protocol="zookeeper" address="10.20.153.10:2181" group="intl" />
                 1.2.3.4 zookeeper集群版的配置
         1.2.4   redis
+                1.2.3.1 注意事项
+                    1.2.3.1.1   使用jedis的版本不要太高因为高版本引用commons-pool2 dubbo使用commons-pool 推荐2.0.0
+                    1.2.3.1.2   使用redis作为注册中心要注意日志打印，一旦失去连接会打印大量日志
 2.  集群容错
 3.  负载均衡
 4.  线程模型
