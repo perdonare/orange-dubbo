@@ -9,9 +9,9 @@
 
     <dubbo:application name="test"/>
 
-    <dubbo:registry address="localhost:2181" protocol="zookeeper" />
+    <dubbo:registry  address="localhost:2181" protocol="zookeeper" />
 
-    <dubbo:reference loadbalance="leastactive" timeout="2000" interface="com.lance.dubbo.provider.ProviderService" id="provider" />
+    <dubbo:reference   loadbalance="leastactive" timeout="5000" interface="com.lance.dubbo.provider.ProviderService" id="provider" />
 
     <bean id="consumer" class="com.lance.dubbo.consumer.impl.ConsumerServiceImpl">
         <property name="providerService" ref="provider"/>

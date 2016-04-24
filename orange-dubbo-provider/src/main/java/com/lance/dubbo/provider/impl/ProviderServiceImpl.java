@@ -16,7 +16,7 @@ public class ProviderServiceImpl implements ProviderService {
             response.setName(providerRequest.getName());
             response.setAge(providerRequest.getAge());
             count++;
-            System.out.println("第 "+count+" 次调用");
+            System.out.println("第 "+count+" 次调用"+"线程ID： "  + Thread.currentThread().getId());
             Thread.sleep(820);
             return response;
         }

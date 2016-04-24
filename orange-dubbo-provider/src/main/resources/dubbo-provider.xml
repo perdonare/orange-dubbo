@@ -9,14 +9,17 @@
 
     <dubbo:application name="dubbo-provider" />
 
-    <dubbo:registry address="localhost:2181" protocol="zookeeper" />
-    <!--<dubbo:provider port="20881"/>-->
-    <!--<dubbo:provider port="20882"/>-->
-    <!--<dubbo:provider port="20883"/>-->
-    <!--<dubbo:provider port="20884"/>-->
+    <dubbo:registry  address="localhost:2181" protocol="zookeeper" />
+
+    <!-- 分发模式为直接调用，不使用线程池-->
+    <!--<dubbo:protocol dispatcher="direct"  />-->
+
+    <!--分发模式为把所有的时间包括消息全部都放到线程池里面去-->
+    <dubbo:protocol dispatcher="all"  />
+
     <dubbo:provider port="20885"/>
 
-    <dubbo:service    interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+    <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
     <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 
