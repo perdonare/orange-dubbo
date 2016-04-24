@@ -9,15 +9,13 @@
 
     <dubbo:application name="dubbo-provider" />
 
-    <dubbo:registry  address="localhost:2181" protocol="zookeeper" />
+    <!--一个注册 一个不注册 -->
+    <!--<dubbo:registry  address="localhost:2181" protocol="zookeeper" />-->
+    <dubbo:registry  address="localhost:2181" protocol="zookeeper" register="false"/>
 
-    <!-- 分发模式为直接调用，不使用线程池-->
-    <!--<dubbo:protocol dispatcher="direct"  />-->
 
-    <!--分发模式为把所有的时间包括消息全部都放到线程池里面去-->
-    <dubbo:protocol dispatcher="all"  />
-
-    <dubbo:provider port="20885"/>
+    <!--<dubbo:provider port="20885"/>-->
+    <dubbo:provider port="20886"/>
 
     <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
