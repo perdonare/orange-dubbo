@@ -8,16 +8,12 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="dubbo-provider" />
+    <dubbo:registry protocol="zookeeper" address="192.168.44.128:2181" />
+    <!--<dubbo:protocol  name="injvm" />-->
+    <!--<dubbo:protocol server="jetty" port="81" name="hessian" />-->
+    <dubbo:protocol server="jetty" port="81" name="http" />
 
-    <!--一个注册 一个不注册 -->
-    <!--<dubbo:registry  address="localhost:2181" protocol="zookeeper" />-->
-    <dubbo:registry  address="localhost:2181" protocol="zookeeper" register="false"/>
-
-
-    <!--<dubbo:provider port="20885"/>-->
-    <dubbo:provider port="20886"/>
-
-    <dubbo:service interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+    <dubbo:service  interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
     <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 

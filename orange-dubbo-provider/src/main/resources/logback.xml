@@ -13,11 +13,11 @@
     </appender>
 
 
-    <logger name="com.bestpay.schedule" level="${log_level}">
+    <logger name="com.bestpay.schedule" level="debug">
         <appender-ref ref="scheduler_log" />
         <appender-ref ref="console" />
     </logger>
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="console" />
     </root>
 </configuration>
