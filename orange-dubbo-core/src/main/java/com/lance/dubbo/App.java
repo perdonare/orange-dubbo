@@ -17,9 +17,13 @@ public class App {
         ConsumerRequest consumerRequest = new ConsumerRequest();
         consumerRequest.setAge(27);
         consumerRequest.setName("lance");
-        ConsumerResponse consumerResponse = consumerService.consume(consumerRequest);
-        System.out.println(consumerResponse);
+        for (int i = 0; i < 100000; i++) {
+            ConsumerResponse consumerResponse = consumerService.consume(consumerRequest);
+            System.out.println(consumerResponse);
+        }
 
+       /* ConsumerResponse consumerResponse = consumerService.consume(consumerRequest);
+        System.out.println(consumerResponse);*/
         Thread.sleep(30000);
     }
 }
