@@ -105,6 +105,11 @@
 12. 多版本
 13. 分组聚合
 14. 参数验证
+    14.1    参数验证
+        14.1.1  使用说明
+                添加jar依赖  validation-api和hibernate-validator
+                对实体添加参数验证annotation
+                在对外提供服务的时候添加 validation="true"
 15. 结果缓存
 16. 泛化引用
 17. 泛化实现

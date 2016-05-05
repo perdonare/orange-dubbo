@@ -17,7 +17,7 @@ public class App {
         final ConsumerRequest consumerRequest = new ConsumerRequest();
         consumerRequest.setAge(27);
         consumerRequest.setName("lance");
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             Thread.sleep(10);
             Thread thread = new Thread(new Runnable() {
                 public void run() {
@@ -31,7 +31,6 @@ public class App {
                 }
             });
             thread.start();
-
         }
 
        /* ConsumerResponse consumerResponse = consumerService.consume(consumerRequest);

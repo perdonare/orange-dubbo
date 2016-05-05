@@ -13,7 +13,7 @@
     <!--<dubbo:protocol server="jetty" port="81" name="hessian" />-->
     <dubbo:protocol server="jetty" port="81" name="http" />
 
-    <dubbo:service  interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+    <dubbo:service validation="true" interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
     <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 

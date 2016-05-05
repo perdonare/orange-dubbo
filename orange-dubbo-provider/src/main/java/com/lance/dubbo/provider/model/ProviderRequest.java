@@ -1,5 +1,6 @@
 package com.lance.dubbo.provider.model;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -8,6 +9,7 @@ import java.io.Serializable;
 public class ProviderRequest implements Serializable{
     private int age;
 
+    @NotNull(message = "名字不能为空")
     private String name;
 
     public int getAge() {
