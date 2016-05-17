@@ -11,9 +11,9 @@
     <dubbo:registry protocol="zookeeper" address="192.168.44.128:2181" />
     <!--<dubbo:protocol  name="injvm" />-->
     <!--<dubbo:protocol server="jetty" port="81" name="hessian" />-->
-    <dubbo:protocol server="jetty" port="81" name="http" />
+    <dubbo:protocol id="test" server="servlet" port="81" name="hessian" contextpath="mytest/test"/>
 
-    <dubbo:service validation="true" interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
+    <dubbo:service protocol="test" interface="com.lance.dubbo.provider.ProviderService" ref="provider" />
 
     <bean id="provider" class="com.lance.dubbo.provider.impl.ProviderServiceImpl"/>
 

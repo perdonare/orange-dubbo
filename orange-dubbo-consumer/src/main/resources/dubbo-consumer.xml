@@ -14,8 +14,7 @@
     <!--<dubbo:protocol name="hessian" server="servlet"  />-->
     <!--<dubbo:reference url="hessian://192.168.44.1:81/com.lance.dubbo.provider.ProviderService"  timeout="5000" interface="com.lance.dubbo.provider.ProviderService" id="provider" />-->
 
-    <dubbo:protocol name="http" server="servlet"  />
-    <dubbo:reference url="http://192.168.44.1:82/com.lance.dubbo.provider.ProviderService"  timeout="5000" interface="com.lance.dubbo.provider.ProviderService" id="provider" />
+    <dubbo:reference  url="http://192.178.106.247:81/mytest/test/com.lance.dubbo.provider.ProviderService"  timeout="5000" interface="com.lance.dubbo.provider.ProviderService" id="provider" />
     <bean id="consumer" class="com.lance.dubbo.consumer.impl.ConsumerServiceImpl">
         <property name="providerService" ref="provider"/>
     </bean>

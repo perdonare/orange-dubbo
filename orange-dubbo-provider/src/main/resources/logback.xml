@@ -1,23 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
 
     <property name="context_name" value="cf-scheduler" />
 
-    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- 日志输出编码 -->
-        <Encoding>UTF-8</Encoding>
-        <layout class="ch.qos.logback.classic.PatternLayout">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [%X{reqIp}] [%X{reqTime}] %logger{0} - %msg%n
-            </pattern>
-        </layout>
+    <conversionRule conversionWord="lineno" converterClass="com.bestpay.ext.logback.converter.LineNoConverter" />
+    <conversionRule conversionWord="tracelogid" converterClass="com.bestpay.ext.logback.converter.TraceLogIdConverter" />
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="utf-8">
+            <!-- encoder 可以指定字符集，对于中文输出有意义 -->
+            <!-- %.-1level 只显示信息级别的首字母,%-5level 左对齐显示信息级别全称 -->
+            <!-- 如需自定义关键字，用 %mdc{键名} 表示,程序中用MDC.put("键名","键值")设置，可动态设置 [%logger:%line]-->
+            <Pattern>[%date] [%thread] [%-5level] --%mdc{client} [%X{TRACE_LOG_ID}] %logger %line %msg%n</Pattern>
+        </encoder>>
     </appender>
 
+    <appender name="scheduler" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_FILE_NAME}</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_NAME}.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>90</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%tracelogid] [%thread]%-5level [%lineno] - %msg%n</pattern>
+            <immediateFlush>true</immediateFlush>
+            <charset class="java.nio.charset.Charset">UTF-8</charset>
+        </encoder>
+    </appender>
 
-    <logger name="com.bestpay.schedule" level="debug">
-        <appender-ref ref="scheduler_log" />
-        <appender-ref ref="console" />
+    <logger name="com.lance" level="${LOG_LEVEL_VALUE}" additivity="false">
+        <appender-ref ref="scheduler" />
     </logger>
-    <root level="debug">
-        <appender-ref ref="console" />
+
+    <root level="INFO">
+        <appender-ref ref="scheduler" />
+        <appender-ref ref="stdout" />
     </root>
+
 </configuration>
